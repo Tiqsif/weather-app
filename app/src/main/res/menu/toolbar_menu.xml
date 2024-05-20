@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:title="Camera"
+        android:id ="@+id/camera"
+        android:icon="@drawable/baseline_camera_alt_24"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:title="Search"
+        android:id="@+id/search"
+        android:icon="@drawable/search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView"
+        />
+    <item
+        android:title="New group"
+        android:id="@+id/group"
+        />
+    <item
+        android:title="New broadcast"
+        android:id="@+id/broadcast"
+        />
+    <item
+        android:title="Linked devices"
+        android:id="@+id/linked"
+        />
+    <item
+        android:title="Settings"
+        android:id="@+id/settings"
+        />
+
+</menu>
