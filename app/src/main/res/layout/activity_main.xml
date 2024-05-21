@@ -11,8 +11,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/lavender"
-        android:padding="25dp"
+        android:background="@drawable/main_background"
+        android:padding="0dp"
         tools:context=".MainActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -20,14 +20,13 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="65dp"
-        android:background="@color/lavender"
+        android:background="@color/nightblue"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:logo="@drawable/baseline_account_circle_24"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="Toolbar"
-        app:titleTextColor="@color/laci"
+        app:titleTextColor="@color/white"
         app:titleMarginStart="25dp" />
 
 
@@ -42,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+
             android:background="@drawable/btn_bg6"
             android:padding="10dp"
             android:text="Get Weather"
@@ -52,18 +52,81 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/btVar1"
-            android:layout_alignTop="@+id/btVar1"
-            android:layout_alignEnd="@+id/btVar1"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="-61dp"
-            android:layout_marginEnd="-46dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="27dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="36dp"
             android:fontFamily="sans-serif-black"
-            android:text="Get temperature here"
-            android:textColor="#F6F8F5"
-            android:textSize="25dp"
+            android:text="Temperature"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="54dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/datetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btVar1"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginTop="22dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Observation Time"
+            android:textAlignment="center"
+            android:textColor="@color/lightpink"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/district"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="100dp"
+            android:layout_above="@+id/textView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="36dp"
+            android:fontFamily="sans-serif-black"
+            android:text="District"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/countrycode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/datetime"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Countrycode"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="32dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/timezone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/countrycode"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Timezone"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="36dp"
             android:textStyle="bold" />
     </RelativeLayout>
 
@@ -82,7 +145,7 @@
 </androidx.constraintlayout.widget.ConstraintLayout>
 
     <RelativeLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/white">

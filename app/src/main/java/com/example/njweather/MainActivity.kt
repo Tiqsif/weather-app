@@ -23,8 +23,13 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.CancellationToken
+import com.google.android.gms.tasks.CancellationTokenSource
+import com.google.android.gms.tasks.OnTokenCanceledListener
 import kotlinx.android.synthetic.main.activity_main.btVar1
+import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 
 
@@ -34,6 +39,11 @@ class MainActivity : AppCompatActivity() {
     //api id for url
     var api_id1 = "e91fed9e05004b689cad837190ce895f"
     private lateinit var textView: TextView
+    private lateinit var district: TextView
+    private lateinit var countrycode: TextView
+    private lateinit var timezone: TextView
+    private lateinit var datetime: TextView
+
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     var drawerLayout: DrawerLayout? = null
@@ -53,14 +63,22 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        //create an instance of the Fused Location Provider Client
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        //link the textView in which the temperature will be displayed
+        textView = findViewById(R.id.textView)
+        district = findViewById(R.id.district)
+        countrycode = findViewById(R.id.countrycode)
+        datetime = findViewById(R.id.datetime)
+        timezone = findViewById(R.id.timezone)
+        // ---------------------------------------
         var toolbar: Toolbar? = null
 
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        start = findViewById(R.id.servisStart);
-        stop = findViewById(R.id.servisStop);
+        start = findViewById(R.id.serviceStart);
+        stop = findViewById(R.id.serviceStop);
 
         start?.setOnClickListener(View.OnClickListener { v ->
             if (v === start) {
@@ -117,14 +135,10 @@ class MainActivity : AppCompatActivity() {
         })
         //-------------------------------------------------//
 
-        //link the textView in which the temperature will be displayed
-        textView = findViewById(R.id.textView)
-        //create an instance of the Fused Location Provider Client
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        Log.e("lat", weather_url1)
+
         //on clicking this button function to get the coordinates will be called
         btVar1.setOnClickListener {
-            Log.e("lat", "onClick")
+            Log.e("lat", "buttonClicked")
             //function to find the coordinates of the last location
             obtainLocation()
         }
@@ -133,17 +147,40 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("MissingPermission")
     private fun obtainLocation() {
-        Log.e("lat", "function")
+        Log.e("lat", "obtainLocation")
         //get the last location
+        fusedLocationClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, object : CancellationToken() {
+            override fun onCanceledRequested(p0: OnTokenCanceledListener) = CancellationTokenSource().token
+
+            override fun isCancellationRequested() = false
+        })
+            .addOnSuccessListener { location: Location? ->
+                if (location == null)
+                    Toast.makeText(this, "Cannot get location.", Toast.LENGTH_SHORT).show()
+                else {
+                    weather_url1 =
+                        "https://api.weatherbit.io/v2.0/current?" + "lat=" + location?.latitude + "&lon=" + location?.longitude + "&key=" + api_id1
+                    Log.e("lat", location?.latitude.toString())
+                    Log.e("long", location?.longitude.toString())
+                    //this function will fetch data from URL
+                    getTemp()
+                }
+
+            }
+        /*
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location: Location? ->
                 //get the latitute and longitude and create the http URL
                 weather_url1 =
                     "https://api.weatherbit.io/v2.0/current?" + "lat=" + location?.latitude + "&lon=" + location?.longitude + "&key=" + api_id1
-                Log.e("lat", weather_url1.toString())
+                Log.e("lat", location?.latitude.toString())
+                Log.e("long", location?.longitude.toString())
+                Log.e("weather_url1", weather_url1.toString())
                 //this function will fetch data from URL
                 getTemp()
             }
+
+         */
     }
 
     fun getTemp() {
@@ -154,21 +191,33 @@ class MainActivity : AppCompatActivity() {
         // Request a string response from the provided URL.
         val stringReq = StringRequest(Request.Method.GET, url,
             Response.Listener<String> { response ->
-                Log.e("lat", response.toString())
+                Log.e("resp", response.toString())
                 //get the JSON object
                 val obj = JSONObject(response)
                 //get the Array from obj of name - "data"
                 val arr = obj.getJSONArray("data")
-                Log.e("lat obj1", arr.toString())
+                Log.e("arr", arr.toString())
                 //get the JSON object from the array at index position 0
                 val obj2 = arr.getJSONObject(0)
-                Log.e("lat obj2", obj2.toString())
+                /*
+
+                val temp = obj2.getString("temp")
+                val country = obj2.getString("country_code")
+                val district = obj2.getString("city_name")
+                val timezone = obj2.getString("timezone")
+                val datetime = obj2.getString("datetime")
+
+                 */
+                Log.e("obj2", obj2.toString())
                 //set the temperature and the city name using getString() function
-                textView.text =
-                    obj2.getString("temp") + " deg Celcius in " + obj2.getString("city_name")
+                textView.text = obj2.getString("temp") + "°"
+                district.text = obj2.getString("city_name")
+                timezone.text = obj2.getString("timezone")
+                datetime.text = obj2.getString("ob_time")
+                countrycode.text = obj2.getString("country_code")
             },
             //In case of any error
-            Response.ErrorListener { textView!!.text = "That didn't work!" })
+            Response.ErrorListener { textView!!.text = "Error!"})
         queue.add(stringReq)
     }
 

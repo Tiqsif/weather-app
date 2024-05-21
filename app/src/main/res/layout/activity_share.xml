@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/main_background"
         android:orientation="vertical">
 
         <include
@@ -20,9 +21,10 @@
             android:layout_height="wrap_content"
             android:text="Share"
             android:layout_gravity="center"
-            android:layout_marginTop="400dp"
-            android:textColor="@color/lavender"
-            android:textSize="36sp"/>
+            android:fontFamily="casual"
+            android:paddingTop="200dp"
+            android:textColor="@color/white"
+            android:textSize="48dp"/>
 
 
     </LinearLayout>

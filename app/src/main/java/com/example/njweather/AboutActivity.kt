@@ -74,7 +74,7 @@ class AboutActivity : AppCompatActivity() {
         logout?.setOnClickListener(View.OnClickListener {
             Toast.makeText(
                 this@AboutActivity,
-                "logout",
+                "logged out",
                 Toast.LENGTH_SHORT
             ).show()
         })
