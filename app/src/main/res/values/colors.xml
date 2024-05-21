@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="white">#ffffff</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="laci">#000FFF</color>
+    <color name="nightblue">#0990f4</color>
+    <color name="dayblue">#0fbfee</color>
+    <color name="sunyellow">#ffd236</color>
+    <color name="sunorange">#ffb500</color>
+    <color name="lightgray">#d2d2d2</color>
+    <color name="lightpink">#ffdeeb</color>
+    <color name="blush">#F3E8EE</color>
+    <color name="cambridge">#729B79</color>
+    <color name="yesil">#009B02</color>
+    <color name="purple200">#FFBB86FC</color>
+    <color name="purple500">#FF6200EE</color>
+    <color name="purple700">#FF3700B3</color>
+    <color name="teal200">#FF03DAC5</color>
+    <color name="teal700">#FF018768</color>
+    <color name="lavender">#871F78</color>
 </resources>

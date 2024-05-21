@@ -4,9 +4,16 @@
         <shape>
             <gradient
                 android:angle="0"
-                android:startColor="#BBE1FD"
+                android:startColor="@color/lightgray"
                 android:endColor="#6CC7E3"
                 android:type="linear"/>
+            <stroke
+                android:width="2dp"
+                android:color="@color/white"/>
+            <corners
+                android:radius="100dp"
+
+                />
         </shape>
     </item>
 
