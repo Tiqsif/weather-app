@@ -61,25 +61,7 @@
 
     </LinearLayout>
 
-    <!-- Settings -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/settings1"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Settings"
-            android:textSize="20sp"
-            android:drawableLeft="@drawable/settings__1_"
-            android:drawablePadding="8dp"/>
-
-    </LinearLayout>
 
     <!-- Share -->
     <LinearLayout
@@ -100,7 +82,25 @@
             android:drawablePadding="8dp"/>
 
     </LinearLayout>
+    <!-- Settings -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/settings1"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Settings"
+            android:textSize="20sp"
+            android:drawableLeft="@drawable/settings__1_"
+            android:drawablePadding="8dp"/>
+
+    </LinearLayout>
     <!-- About Us -->
     <LinearLayout
         android:layout_width="wrap_content"
