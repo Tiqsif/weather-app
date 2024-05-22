@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var countrycode: TextView
     private lateinit var timezone: TextView
     private lateinit var datetime: TextView
+    private lateinit var weather: TextView
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
@@ -71,6 +72,7 @@ class MainActivity : AppCompatActivity() {
         countrycode = findViewById(R.id.countrycode)
         datetime = findViewById(R.id.datetime)
         timezone = findViewById(R.id.timezone)
+        weather = findViewById(R.id.weather)
         // ---------------------------------------
         var toolbar: Toolbar? = null
 
@@ -199,6 +201,7 @@ class MainActivity : AppCompatActivity() {
                 Log.e("arr", arr.toString())
                 //get the JSON object from the array at index position 0
                 val obj2 = arr.getJSONObject(0)
+                val weatherObj = obj2.getJSONObject("weather")
                 /*
 
                 val temp = obj2.getString("temp")
@@ -215,6 +218,7 @@ class MainActivity : AppCompatActivity() {
                 timezone.text = obj2.getString("timezone")
                 datetime.text = obj2.getString("ob_time")
                 countrycode.text = obj2.getString("country_code")
+                weather.text = weatherObj.getString("description")
             },
             //In case of any error
             Response.ErrorListener { textView!!.text = "Error!"})
